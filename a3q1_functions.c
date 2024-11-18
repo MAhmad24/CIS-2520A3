@@ -4,9 +4,8 @@
 #include <ctype.h>
 #include "a3q1_header.h"
 
-
 Variable variables[10];
-int varCount = 0; 
+int varCount = 0;
 
 // Helper function to check if a character is an operator
 int isOperator(char c) {

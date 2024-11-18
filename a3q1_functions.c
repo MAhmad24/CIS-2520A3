@@ -179,7 +179,7 @@ float calculate(Node *root) {
                 // Check for division by zero
                 if (rightValue == 0) {
                     printf("Error: Division by zero\n");
-                    exit(1);
+                    return 0;
                 }
                 return leftValue / rightValue;
         }
@@ -190,12 +190,21 @@ float calculate(Node *root) {
                 return variables[i].value;
             }
         }
-        printf("Error: Variable %s not found\n", root->data);
-        exit(1);
+        printf("Warning: Variable %s not found, using default value 0\n", root->data);
+        return 0;
     // If the current node is a number, return its value
     } else {
         return atof(root->data);
     }
 
     return 0;
+}
+
+// Function to free the memory allocated for the binary expression tree
+void freeTree(Node *root) {
+    if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
 }

@@ -30,5 +30,6 @@ void promptVariables(Node *root);
 float calculate(Node *root);
 int isOperator(char c);
 int precedence(char op);
+void freeTree(Node *root);
 
 #endif

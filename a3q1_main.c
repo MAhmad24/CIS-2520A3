@@ -60,6 +60,8 @@ int main(int argc, char *argv[]) {
         }
         
     } while (choice != 5);
+    // Free the memory allocated for the binary expression tree
+    freeTree(root);
 
     return 0;
 }

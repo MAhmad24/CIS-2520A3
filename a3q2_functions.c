@@ -13,24 +13,30 @@
 void downHeap(int key[20], int pos, int array[20][10]){
   while (isParent(pos)) {
 
+    // Calculate indices for left and right children
     int leftChild = 2 * pos + 1;
     int rightChild = 2 * pos + 2;
     int largest = pos;
 
+    // Compare with left child
     if (leftChild < 20 && key[leftChild] > key[largest]) {
       largest = leftChild;
     }
 
+    // Compare with right child
     if (rightChild < 20 && key[rightChild] > key[largest]) {
       largest = rightChild;
     }
 
+    // Swap with the largest child if necessary
     if (largest != pos) {
       swap(pos, largest, key, array);
       pos = largest;
     } 
     
+
     else {
+      // If no swap is needed, break out of the loop
       break;
     }
 
@@ -40,16 +46,20 @@ void downHeap(int key[20], int pos, int array[20][10]){
 
 // The isParent function returns true if the passed position has a child or false if there's no child
 bool isParent(int keyPos){
+  //Calculate the left child index and check if it's within bounds
   return (2 * keyPos + 1) < 20;
 }
 
 // The swap function swaps 2 rows in the 2D array and the key array. It receives the position of the 2 rows to be swapped, the key array, and the 2D array in its arguements.
 void swap(int key1Pos, int key2Pos, int key[20], int array[20][10]){
-  
+
+
+  //swap the keys
   int tempKey = key[key1Pos];
   key[key1Pos] = key[key2Pos];
   key[key2Pos] = tempKey;
 
+  //swap the rows
   int tempRow[10];
   for (int i = 0; i < 10; i++) {
     tempRow[i] = array[key1Pos][i];

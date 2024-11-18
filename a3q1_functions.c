@@ -132,10 +132,13 @@ void inorder(Node *root) {
 // The postOrder function prints tree nodes in postorder traversal.
 void postorder(Node *root) {
     if (root != NULL) {
+
         // Recursively traverse the left subtree
         postorder(root->left);
+
         // Recursively traverse the right subtree
         postorder(root->right);
+
         // Print the current node's data
         printf("%s ", root->data);
     }
@@ -144,18 +147,22 @@ void postorder(Node *root) {
 // The promptVariables function prompts the user to assign values to each variable found in the expression tree. The values should be stored in the Variables struct.
 void promptVariables(Node *root) {
     if (root != NULL) {
+
         // If the current node is a variable, prompt the user for its value
         if (isalpha(root->data[0])) {
             printf("Enter value for %s: ", root->data);
             float value;
             scanf("%f", &value);
+
             // Store the variable name and value in the variables array
             strcpy(variables[varCount].varName, root->data);
             variables[varCount].value = value;
             varCount++;
         }
+
         // Recursively prompt for variables in the left subtree
         promptVariables(root->left);
+
         // Recursively prompt for variables in the right subtree
         promptVariables(root->right);
     }
@@ -169,12 +176,14 @@ float calculate(Node *root) {
     if (isOperator(root->data[0])) {
         float leftValue = calculate(root->left);
         float rightValue = calculate(root->right);
+
         // Perform the operation based on the operator
         switch (root->data[0]) {
             case '+': return leftValue + rightValue;
             case '-': return leftValue - rightValue;
             case '*': return leftValue * rightValue;
             case '/':
+
                 // Check for division by zero
                 if (rightValue == 0) {
                     printf("Error: Division by zero\n");
@@ -182,6 +191,7 @@ float calculate(Node *root) {
                 }
                 return leftValue / rightValue;
         }
+
     // If the current node is a variable, return its value
     } else if (isalpha(root->data[0])) {
         for (int i = 0; i < varCount; i++) {
@@ -191,6 +201,7 @@ float calculate(Node *root) {
         }
         printf("Warning: Variable %s not found, using default value 0\n", root->data);
         return 0;
+        
     // If the current node is a number, return its value
     } else {
         return atof(root->data);

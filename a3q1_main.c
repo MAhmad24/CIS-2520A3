@@ -14,16 +14,19 @@ int main(int argc, char *argv[]) {
     char expr[100];
     int j = 0;
 
+    
     for (int i = 0; argv[1][i] != '\0'; i++) {
         if (argv[1][i] != '\\') { 
             expr[j++] = argv[1][i];
         }
     }
     expr[j] = '\0';
-
+    
+    
     Node *root = parseExpression(expr);
     
     int choice;
+    // Menu loop
     do {
         printf("\nMenu:\n");
         printf("1. Preorder\n");
@@ -34,6 +37,7 @@ int main(int argc, char *argv[]) {
         printf("Enter choice: ");
         scanf("%d", &choice);
 
+        // Perform the selected operation
         switch (choice) {
             case 1: preorder(root); 
                     printf("\n"); 

@@ -31,8 +31,11 @@ int main(void){
 		downHeap(key, i, array);
 	}
 
+	// Printing/displaying the array after the downHeap
 	for(i = 0; i < 20; ++i){
 		for(j = 0; j < 10; ++j){
+
+			// Fromat output to ensure two-digit numbers with leading zeros if necessary
 			if(array[i][j] < 10){
 				printf("0%d ", array[i][j]);
 			}
